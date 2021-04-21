@@ -9,8 +9,17 @@ best practice would be that you should use params when doing a get,
 
    url/post, data = data  --> get it from the body
     url/get , data = data --> get it from params
+    5 operations
+    1 update | 1 insert | 1 delete  | 2 retrieve 
+getProductDetails, getProductById,storeProductDetails ,deleteProductById , updateProductPrice
 */
-
+/* 
+    //To return only 1 object 
+    res.json(data[0])
+    //to return array
+    // res.json(data);
+    res.json({"msg":"record Stored succesfulle"})
+*/
 let ProductModel = require("../model/product.model.js");
 
 //Retrieve all product details 
@@ -36,7 +45,10 @@ let getProductById = (req, res) => {
     ProductModel.find({_id:pid}, (err,data) =>{
         if(!err)
         {
-            res.json(data);
+            //To return only 1 object 
+                res.json(data[0])
+            //to return array
+           // res.json(data);
         }
     })
 
@@ -54,6 +66,9 @@ let storeProductDetails = (req,res) => {
     });
     product.save((err,result)=>{
         if(!err){
+  
+           //     res.json({"msg":"record Stored succesfulle"})
+           
             res.send("Record stored successfully");
         }
         else
@@ -73,7 +88,7 @@ ProductModel.deleteOne({_id : pid}, (err, result)=> {
     {
         if(result.deletedCount > 0 )
         {
-            res.send("Record deleted successfully" + result );
+            res.send("Record " + pid + "deleted successfully");
         }
           
         else
@@ -90,7 +105,7 @@ ProductModel.deleteOne({_id : pid}, (err, result)=> {
 
 }
 
-//Updating product 
+//Updating product  rtakes 2 parameter id and price 
 let updateProductPrice= (req,res)=> {
     let pid = req.body.pid;
     let updatedPrice = req.body.price;

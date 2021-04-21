@@ -1,0 +1,9 @@
+<div>
+    <form #productRef="ngForm" (ngSubmit)="storeProduct(productRef.value)" >        
+    Product Id : <input type="text" name ="pid" ngModel>
+    Product Name : <input type="text" name ="pname" ngModel>
+    Product Amount : <input type="text" name = "price" ngModel>
+        <input type="submit" value="store">
+        <input type="reset" value="reset">
+    </form>
+</div>
