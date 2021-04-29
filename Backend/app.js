@@ -31,6 +31,18 @@ let url = "mongodb://localhost:27017/meanStack";
 app.use(bodyParser.urlencoded({extended:true}));    // enable body part data  for Post 
 app.use(bodyParser.json());                         // json data. 
 app.use(cors()) //to enable communication policy between port 4040 and 4200
+
+
+//upable to load the static files(anngular files )
+app.use(express.static(process.cwd()));
+//load the frontend file ie angular program
+
+app.get('/', (req,res) => {
+ res.sendFile(__dirname+"/index.html")
+});
+
+
+
 //Database connection without warning 
 const mongooseDbOption ={       // to avoid warning 
     useNewUrlParser: true,
