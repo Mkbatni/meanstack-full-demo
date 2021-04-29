@@ -24,18 +24,24 @@ let app = require("express")();
 let bodyParser = require("body-parser");
 let mongoose = require("mongoose");
 let cors = require("cors");
-//Database URL Details 
-let url = "mongodb://localhost:27017/meanStack";
+
 
 //middleware enable data from post method.
 app.use(bodyParser.urlencoded({extended:true}));    // enable body part data  for Post 
-app.use(bodyParser.json());                         // json data. 
+app.use(bodyParser.json());   
+
+                      // json data. 
 app.use(cors()) //to enable communication policy between port 4040 and 4200
 
 
-//upable to load the static files(anngular files )
+
+
+//upable to load the static files(anngular file new s )
 app.use(express.static(process.cwd()));
-//load the frontend file ie angular program
+//load the fronten  dfhsdjsdd file ie angular program
+//Database URL Details 
+let url = "mongodb://localhost:27017/meanStack";
+
 
 app.get('/', (req,res) => {
  res.sendFile(__dirname+"/index.html")
