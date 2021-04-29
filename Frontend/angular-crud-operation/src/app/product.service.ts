@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from './model.product';
 
@@ -31,29 +31,33 @@ http.delete ("url" , {responseType:'text'})
 http.put ("url", jsonData , {responseType:'text'})
 */
 
+
+  ipAddress:string = "http://18-191-23-67:9090";
+
     //post method 1st parameter url and 2nd parameter json data
     storeProductDetailInfo(productRef:any)
     {
      /*  this.http.post("http://localhost:9090/product/storeProductDetails", productRef  ).
       subscribe(result => console.log(result), error => console.log(error)); */
-      return this.http.post("http://localhost:9090/product/storeProductDetails", productRef ,{responseType:'text'} )
+      //return this.http.post("http://localhost:9090/product/storeProductDetails", productRef ,{responseType:'text'} )
+      return this.http.post( this.ipAddress+ "/product/storeProductDetails", productRef ,{responseType:'text'} )
 
     }
 
     retrieveAllProductDetails() : Observable<Product[]> {
-    return   this.http.get<Product[]>("http://localhost:9090/product/allProductDetails");
+    return   this.http.get<Product[]>( this.ipAddress+ "/product/allProductDetails");
 
     }
     retrieveProductById(id:any) : Observable<Product>
     {
-      return this.http.get<Product>("http://localhost:9090/product/retrieveProductById/" + id);
+      return this.http.get<Product>(  this.ipAddress+ "/product/retrieveProductById/" + id);
     }
     deleteProductById(id:any) 
     {
-      return this.http.delete("http://localhost:9090/product/deleteProductById/" + id,  {responseType:'text'} );
+      return this.http.delete(this.ipAddress+"/product/deleteProductById/" + id,  {responseType:'text'} );
     }
     updateProductPrice(id:any) : any
     {
-      return this.http.put("http://localhost:9090/product/updateProductPrice" , id, {responseType:'text'});
+      return this.http.put(this.ipAddress+"/product/updateProductPrice" , id, {responseType:'text'});
     }
 }

@@ -24,7 +24,7 @@ export class StoreProductComponent implements OnInit {
   {
     console.log(productRef);
     this.prodServ.storeProductDetailInfo(productRef).
-     subscribe(result => console.log(result), error => console.log(error));;
+     subscribe(result => console.log(result), error => console.log(error));
 
   
   }
